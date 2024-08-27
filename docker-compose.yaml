@@ -3,6 +3,7 @@ services:
   xinference:
     image: xprobe/xinference:v0.12.3
     #image: xprobe/xinference:v0.13.3
+    working_dir: .
     restart: always
     command: xinference-local -H 0.0.0.0
     ports: # 不使用 host network 时可打开.
@@ -12,9 +13,9 @@ services:
     # 将本地路径(~/xinference)挂载到容器路径(/root/.xinference)中,
     # 详情见: https://inference.readthedocs.io/zh-cn/latest/getting_started/using_docker_image.html
     volumes:
-      - /abspath/to/xinference_data:/root/.xinference
-      - /abspath/to/xinference_data/cache/huggingface:/root/.cache/huggingface
-      - /abspath/to/xinference_data/cache/modelscope:/root/.cache/modelscope
+      - ./xinference_data:/root/.xinference
+      - ./xinference_data/cache/huggingface:/root/.cache/huggingface
+      - ./xinference_data/cache/modelscope:/root/.cache/modelscope
     deploy:
       resources:
         reservations:
@@ -42,4 +43,4 @@ services:
     # network_mode: "host"
     # 将本地路径(~/chatchat)挂载到容器默认数据路径($CHATCHAT_ROOT)中
     volumes:
-      - /abspath/to/chatchat_data:/root/chatchat_data
+      - ./chatchat_data:/root/chatchat_data

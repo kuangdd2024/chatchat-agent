@@ -39,7 +39,7 @@ COPY . /root/Langchain-Chatchat
 
 # 初始化配置
 WORKDIR /root/Langchain-Chatchat/libs/chatchat-server/chatchat
-RUN python cli.py init -x http://xue.kddbot.com:6047 -l qwen2-instruct-U65rP3n4 -e bge-m3
+RUN python cli.py init
 
 # 初始化知识库文件
 ADD docker/data.tar.gz $CHATCHAT_ROOT/

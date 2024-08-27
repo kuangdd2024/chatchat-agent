@@ -64,7 +64,7 @@ class BasicSettings(BaseFileSettings):
     @cached_property
     def NLTK_DATA_PATH(self) -> Path:
         """nltk 模型存储路径"""
-        p = self.PACKAGE_ROOT / "data/nltk_data"
+        p = self.DATA_PATH / "nltk_data"
         return p
 
     # @computed_field
@@ -117,6 +117,7 @@ class BasicSettings(BaseFileSettings):
         '''创建所有数据目录'''
         for p in [
             self.DATA_PATH,
+            self.NLTK_DATA_PATH,
             self.MEDIA_PATH,
             self.LOG_PATH,
             self.BASE_TEMP_DIR,
@@ -259,7 +260,7 @@ class PlatformConfig(MyBaseModel):
     platform_type: t.Literal["xinference", "ollama", "oneapi", "fastchat", "openai", "custom openai"] = "xinference"
     """平台类型"""
 
-    api_base_url: str = "http://127.0.0.1:9997/v1"
+    api_base_url: str = "http://localhost:6047/v1"#"http://127.0.0.1:9997/v1"
     """openai api url"""
 
     api_key: str = "EMPTY"
@@ -378,7 +379,7 @@ class ApiModelSettings(BaseFileSettings):
             PlatformConfig(**{
                 "platform_name": "xinference",
                 "platform_type": "xinference",
-                "api_base_url": "http://127.0.0.1:9997/v1",
+                "api_base_url": "http://localhost:6047/v1",#"http://127.0.0.1:9997/v1",
                 "api_key": "EMPTY",
                 "api_concurrencies": 5,
                 "auto_detect_model": True,

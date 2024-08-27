@@ -1,0 +1,1 @@
+# 该目录用以挂载chatchat服务的数据，详见docker-compose.yml的volume挂载设置
